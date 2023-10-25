@@ -1,20 +1,34 @@
-const UserInfo = () => {
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../store/store";
+import { fetchGitHubData } from "../store/slices/githubSlice";
+import FollowButton from "./FollowButton";
+
+const UserInfo: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.github.user);
+
+  useEffect(() => {
+    // Dispatch the action to fetch GitHub repositories
+    dispatch(fetchGitHubData("marshalljordan1")); // Provide the username
+  }, [dispatch]);
+
   return (
     <div className="container flex flex-col">
-      <p className="font-bold text-2xl">Jordan Marshall</p>
-      <div className="flex gap-2 ">
+      <p className="font-bold text-2xl">{user?.name}</p>
+      <div className="flex">
         <p className="font-normal text-xl text-light-gray font-light">
-          marshalljordan1
-        </p>
-        <p className="font-normal text-xl text-light-gray font-light">
-          · he/him
+          {user?.login}
         </p>
       </div>
-      <p className="text-base mt-5">
-        I'm a motivated student at the IT Academy in Barcelona who is passionate
-        about technology and looking to embark on an exciting career as a Web
-        Developer
-      </p>
+      <div className="flex flex-col gap-2">
+        <p className="text-xl mt-5">{user?.bio}</p>
+        <FollowButton />
+        <div className="flex gap-3">
+          <a href="">{user?.followers} followers</a>
+          <a href="">{user?.following} following</a>
+        </div>
+      </div>
     </div>
   );
 };

@@ -2,20 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .avatar {
   border-radius: 50%;
 }
 
 .light-gray-border {
-  border-color: #cfd7de;
   border: solid 1px #cfd7de;
+}
+
+.light-gray-b-border {
+  border-bottom: solid 1px #cfd7de;
+}
+
+.input {
+  border: solid 1.5px #8d969f;
 }
 
 .text-black {
   color: black;
 }
 
+.text-white {
+  color: white;
+}
+
 .active-tab {
   border-bottom: solid 3px #fd8c73 !important;
   font-weight: bold;
+}
+
+.btn-sm {
+  height: 1rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  min-height: 2.5rem;
+  font-size: 0.875rem;
 }
