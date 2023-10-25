@@ -1,0 +1,29 @@
+{
+  "hash": "3537a34b",
+  "browserHash": "6650243f",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "d992b9d9",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "1d421c81",
+      "needsInterop": true
+    },
+    "@primer/octicons-react": {
+      "src": "../../node_modules/@primer/octicons-react/dist/index.esm.js",
+      "file": "@primer_octicons-react.js",
+      "fileHash": "8acc84d3",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-L7APZED3": {
+      "file": "chunk-L7APZED3.js"
+    }
+  }
+}
