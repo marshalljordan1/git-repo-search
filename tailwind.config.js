@@ -4,7 +4,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
-      "light-gray": "#646d76",
+      "button-black-text": "#1F2328",
+      "gray-btn": "#F5F8FA",
+      "background-gray": "#F3F4F6",
     },
   },
   plugins: [require("daisyui")],

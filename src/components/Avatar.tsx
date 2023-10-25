@@ -7,7 +7,7 @@ const Avatar = () => {
         src={avatar}
         width="260"
         height="260"
-        className="avatar avatar-user width-full border border-light-gray z-10"
+        className="avatar avatar-user width-full border light-gray-border z-10 h-auto"
       ></img>
     </div>
   );

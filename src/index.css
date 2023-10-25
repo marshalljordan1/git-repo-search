@@ -5,3 +5,17 @@
 .avatar {
   border-radius: 50%;
 }
+
+.light-gray-border {
+  border-color: #cfd7de;
+  border: solid 1px #cfd7de;
+}
+
+.text-black {
+  color: black;
+}
+
+.active-tab {
+  border-bottom: solid 3px #fd8c73 !important;
+  font-weight: bold;
+}

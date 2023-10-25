@@ -3,7 +3,7 @@ const SearchBar = () => {
     <input
       type="text"
       placeholder="Find a repository..."
-      className="input input-bordered input-sm w-3/6"
+      className="input input-bordered input-sm w-3/6 p-5"
     />
   );
 };

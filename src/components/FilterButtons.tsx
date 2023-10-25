@@ -3,32 +3,14 @@ import { TriangleDownIcon } from "@primer/octicons-react";
 const FilterButtons = () => {
   return (
     <div className="flex gap-1">
-      <details className="dropdown">
-        <summary className="ms-4 btn btn-sm btn-outline normal-case w-full">
+      <button className="btn btn-sm light-gray-border flex bg-gray-btn ms-5">
+        <p className="text-sm md:text-base lg:text-lg normal-case ">
           Type: All <TriangleDownIcon />
-        </summary>
-        <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
-        </ul>
-      </details>
-      <details className="dropdown">
-        <summary className="ms-4 btn btn-sm btn-outline text-grey-100 normal-case w-full">
-          Language: All <TriangleDownIcon />
-        </summary>
-        <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
-        </ul>
-      </details>
+        </p>
+      </button>
+      <button className="btn btn-sm light-gray-border text-sm md:text-base lg:text-lg flex bg-gray-btn normal-case ms-5">
+        Language: All <TriangleDownIcon />
+      </button>
     </div>
   );
 };
