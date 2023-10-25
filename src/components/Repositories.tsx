@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import StarButton from "./StarButton";
-import { fetchGitHubRepositories } from "../store/slices/githubSlice";
+import { fetchGitHubData } from "../store/slices/githubSlice";
+import { useDateFormat } from "../context/DateFormatContext";
 
 const Repositories: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -10,9 +11,11 @@ const Repositories: React.FC = () => {
     (state: RootState) => state.github.repositories
   );
 
+  const { formatDateAgo } = useDateFormat();
+
   useEffect(() => {
     // Dispatch the action to fetch GitHub repositories
-    dispatch(fetchGitHubRepositories("marshalljordan1")); // Provide the username
+    dispatch(fetchGitHubData("marshalljordan1")); // Provide the username
   }, [dispatch]);
 
   return (
@@ -27,14 +30,15 @@ const Repositories: React.FC = () => {
                     href={repository.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="text-blue-link text-2xl font-bold"
                   >
                     {repository.name}
                   </a>
                   <p>{repository.description}</p>
 
                   <div className="flex gap-4">
-                    <p>Typescript</p>
-                    <p>Updated {repository.updated_at}</p>
+                    <p>{repository.language}</p>
+                    <p>Updated {formatDateAgo(repository.updated_at)}</p>
                   </div>
                 </div>
                 <div>

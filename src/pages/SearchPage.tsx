@@ -1,6 +1,5 @@
 import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/SearchBar";
-import FilterButtons from "../components/FilterButtons";
 import Repositories from "../components/Repositories";
 import Navbar from "../components/Navbar";
 
@@ -8,17 +7,17 @@ const SearchPage = () => {
   return (
     <div className="container w-screen">
       <header>
-        <div className="bg-background-gray">
+        <div className="bg-background-gray w-screen">
           <Navbar />
         </div>
       </header>
+
       <main>
-        <div className="flex mt-5">
+        <div className="flex w-full">
           <Sidebar />
-          <div className="flex flex-col mt-20 ms-10 w-full h-10">
-            <div className="flex border-b pb-8">
+          <div className="flex flex-col mt-5 ms-10 w-full h-10">
+            <div>
               <SearchBar />
-              <FilterButtons />
             </div>
             <div>
               <Repositories />
