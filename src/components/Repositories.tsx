@@ -2,27 +2,27 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import StarButton from "./StarButton";
-import { fetchGitHubData } from "../store/slices/githubSlice";
+import { fetchGithubData } from "../store/slices/githubSlice";
 import { useDateFormat } from "../context/DateFormatContext";
 
 const Repositories: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const repositories = useSelector(
-    (state: RootState) => state.github.repositories
+
+  const filteredRepositories = useSelector(
+    (state: RootState) => state.github.filteredRepositories
   );
 
   const { formatDateAgo } = useDateFormat();
 
   useEffect(() => {
-    // Dispatch the action to fetch GitHub repositories
-    dispatch(fetchGitHubData("marshalljordan1")); // Provide the username
+    dispatch(fetchGithubData("marshalljordan1"));
   }, [dispatch]);
 
   return (
     <>
       <div>
         <ul className="flex flex-col mb-10">
-          {repositories.map((repository) => (
+          {filteredRepositories.map((repository) => (
             <li className="py-6 border-b" key={repository.id}>
               <div className="flex">
                 <div className="flex flex-col gap-2 w-10/12">

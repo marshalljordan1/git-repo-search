@@ -1,4 +1,4 @@
-export interface GitHubRepository {
+export interface GithubRepository {
   id: number;
   name: string;
   html_url: string;
@@ -7,7 +7,7 @@ export interface GitHubRepository {
   language: string;
 }
 
-export interface GitHubUser {
+export interface GithubUser {
   name: string;
   login: string;
   avatar_url: string;
@@ -18,7 +18,10 @@ export interface GitHubUser {
 }
 
 export interface GithubState {
-  repositories: GitHubRepository[];
+  repositories: GithubRepository[];
+  user: GithubUser | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
+  searchTerm: string;
+  filteredRepositories: GithubRepository[];
 }

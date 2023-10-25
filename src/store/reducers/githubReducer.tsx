@@ -1,15 +1,18 @@
 import { GithubState } from "../../interfaces/interfaces";
-import { GitHubRepository } from "../../interfaces/interfaces";
+import { GithubRepository } from "../../interfaces/interfaces";
 
 const initialState: GithubState = {
   repositories: [],
+  user: null,
   status: "idle",
   error: null,
+  searchTerm: "",
+  filteredRepositories: [],
 };
 
 type GetReposSuccessAction = {
   type: "GET_REPOS_SUCCESS";
-  payload: GitHubRepository[];
+  payload: GithubRepository[];
 };
 
 type GetReposFailureAction = {
