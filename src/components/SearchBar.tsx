@@ -20,7 +20,7 @@ const SearchBar: React.FC = () => {
   }, [searchQuery, dispatch]);
 
   return (
-    <div className="flex border-b pb-6 gap-5">
+    <div className="flex light-gray-b-border  pb-6 gap-5">
       <input
         type="text"
         placeholder="Find a repository..."

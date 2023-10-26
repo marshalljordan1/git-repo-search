@@ -8,6 +8,8 @@ const initialState: GithubState = {
   error: null,
   searchTerm: "",
   filteredRepositories: [],
+  searchResultsCount: 0,
+  isSearchQueryEmpty: false,
 };
 
 type GetReposSuccessAction = {

@@ -6,6 +6,8 @@ import { fetchGithubData } from "../store/slices/githubSlice";
 import { useDateFormat } from "../context/DateFormatContext";
 
 const Repositories: React.FC = () => {
+  const { formatDateAgo } = useDateFormat();
+
   const dispatch: AppDispatch = useDispatch();
 
   const filteredRepositories = useSelector(
@@ -20,12 +22,8 @@ const Repositories: React.FC = () => {
   const searchResultsCount = useSelector(
     (state: RootState) => state.github.searchResultsCount
   );
-
   const user = useSelector((state: RootState) => state.github.user);
-
   const searchTerm = useSelector((state: RootState) => state.github.searchTerm);
-
-  const { formatDateAgo } = useDateFormat();
 
   useEffect(() => {
     dispatch(fetchGithubData("marshalljordan1"));
@@ -36,25 +34,28 @@ const Repositories: React.FC = () => {
 
   return (
     <>
-      <div className="border-b">
+      <div className="light-gray-b-border ">
         {!isSearchQueryEmpty ? (
-          <p className="my-5 ">
-            {searchResultsCount === 0 ? (
-              <>
-                <span className="font-bold">{searchResultsCount}</span>
-                {` results for repositories matching`}{" "}
-                <span className="font-bold">{searchTerm}</span> {`sorted by`}{" "}
-                <span className="font-bold">last updated.</span>
-              </>
+          <p className="my-5">
+            {searchResultsCount >= 0 ? (
+              <div className="flex justify-between">
+                <div className="mt-3 text-lg">
+                  <span className="font-bold">{searchResultsCount}</span>
+                  {` results for repositories matching`}{" "}
+                  <span className="font-bold">{searchTerm}</span> {`sorted by`}{" "}
+                  <span className="font-bold">last updated.</span>
+                </div>
+              </div>
             ) : null}
           </p>
         ) : null}
       </div>
+
       {searchResultsCount > 0 || isSearchQueryEmpty ? (
         <div>
           <ul className="flex flex-col mb-10">
             {repositoriesToRender.map((repository) => (
-              <li className="py-6 border-b" key={repository.id}>
+              <li className="py-6 light-gray-b-border " key={repository.id}>
                 <div className="flex">
                   <div className="flex flex-col gap-2 w-10/12">
                     <a

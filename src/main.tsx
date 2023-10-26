@@ -5,14 +5,16 @@ import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store/store.tsx";
 import { DateFormatProvider } from "./context/DateFormatContext.tsx";
-// import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <DateFormatProvider>
-        <App />
-      </DateFormatProvider>
+      <BrowserRouter>
+        <DateFormatProvider>
+          <App />
+        </DateFormatProvider>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );
