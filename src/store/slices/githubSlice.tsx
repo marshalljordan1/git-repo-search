@@ -22,8 +22,6 @@ export const fetchGithubData = createAsyncThunk(
     const repositories = reposResponse.data;
     const user = userResponse.data;
 
-    console.log(user);
-
     return { repositories, user };
   }
 );

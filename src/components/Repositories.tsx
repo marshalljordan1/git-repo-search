@@ -12,17 +12,24 @@ const Repositories: React.FC = () => {
     (state: RootState) => state.github.filteredRepositories
   );
 
+  const repositories = useSelector(
+    (state: RootState) => state.github.repositories
+  );
+
   const { formatDateAgo } = useDateFormat();
 
   useEffect(() => {
     dispatch(fetchGithubData("marshalljordan1"));
   }, [dispatch]);
 
+  const repositoriesToRender =
+    filteredRepositories.length > 0 ? filteredRepositories : repositories;
+
   return (
     <>
       <div>
         <ul className="flex flex-col mb-10">
-          {filteredRepositories.map((repository) => (
+          {repositoriesToRender.map((repository) => (
             <li className="py-6 border-b" key={repository.id}>
               <div className="flex">
                 <div className="flex flex-col gap-2 w-10/12">
