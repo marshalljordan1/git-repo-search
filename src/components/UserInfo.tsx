@@ -1,16 +1,10 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../store/store";
-import { fetchGithubData } from "../store/slices/githubSlice";
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 import FollowButton from "./FollowButton";
 
 const UserInfo: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
   const user = useSelector((state: RootState) => state.github.user);
-
-  useEffect(() => {
-    dispatch(fetchGithubData("marshalljordan1"));
-  }, [dispatch]);
 
   return (
     <div className="container flex flex-col">

@@ -4,7 +4,7 @@ import UserInfo from "./UserInfo";
 const Sidebar = () => {
   return (
     <>
-      <div className="sidebar flex flex-col justify-content items-baseline w-4/12">
+      <div className="sidebar flex flex-col justify-content items-baseline w-5/12">
         <div className="ms-10 mt-6">
           <Avatar />
         </div>

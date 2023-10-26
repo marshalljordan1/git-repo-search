@@ -26,7 +26,7 @@ const Repositories: React.FC = () => {
   const searchTerm = useSelector((state: RootState) => state.github.searchTerm);
 
   useEffect(() => {
-    dispatch(fetchGithubData("marshalljordan1"));
+    dispatch(fetchGithubData("vicenlu"));
   }, [dispatch]);
 
   const repositoriesToRender =
@@ -73,7 +73,7 @@ const Repositories: React.FC = () => {
                       <p>Updated {formatDateAgo(repository.updated_at)}</p>
                     </div>
                   </div>
-                  <div>
+                  <div className="mt-5">
                     <StarButton />
                   </div>
                 </div>
