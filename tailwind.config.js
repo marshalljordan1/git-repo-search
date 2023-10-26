@@ -6,6 +6,7 @@ export default {
     colors: {
       "button-text": "#1F2328",
       "gray-btn": "#F5F8FA",
+      "light-gray": "#646D76",
       "background-gray": "#F3F4F6",
       "blue-link": "#0968DA",
     },

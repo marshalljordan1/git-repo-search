@@ -26,7 +26,7 @@ const Repositories: React.FC = () => {
   const searchTerm = useSelector((state: RootState) => state.github.searchTerm);
 
   useEffect(() => {
-    dispatch(fetchGithubData("vicenlu"));
+    dispatch(fetchGithubData("marshalljordan1"));
   }, [dispatch]);
 
   const repositoriesToRender =
@@ -34,12 +34,12 @@ const Repositories: React.FC = () => {
 
   return (
     <>
-      <div className="light-gray-b-border ">
+      <div className="light-gray-b-border">
         {!isSearchQueryEmpty ? (
           <p className="my-5">
             {searchResultsCount >= 0 ? (
               <div className="flex justify-between">
-                <div className="mt-3 text-lg">
+                <div className="text-lg ">
                   <span className="font-bold">{searchResultsCount}</span>
                   {` results for repositories matching`}{" "}
                   <span className="font-bold">{searchTerm}</span> {`sorted by`}{" "}
@@ -66,14 +66,16 @@ const Repositories: React.FC = () => {
                     >
                       {repository.name}
                     </a>
-                    <p>{repository.description}</p>
+                    <p className="text-light-gray">{repository.description}</p>
 
                     <div className="flex gap-4">
-                      <p>{repository.language}</p>
-                      <p>Updated {formatDateAgo(repository.updated_at)}</p>
+                      <p className="text-light-gray">{repository.language}</p>
+                      <p className="text-light-gray">
+                        Updated {formatDateAgo(repository.updated_at)}
+                      </p>
                     </div>
                   </div>
-                  <div className="mt-5">
+                  <div className="sm:mt-5 mt-14 me-2">
                     <StarButton />
                   </div>
                 </div>
@@ -82,7 +84,7 @@ const Repositories: React.FC = () => {
           </ul>
         </div>
       ) : (
-        <p className="text-3xl font-bold text-center mt-40">
+        <p className="text-3xl font-bold text-center mt-20 mb-40 sm:mb-0 sm:mt-40">
           {user?.login} doesn’t have any repositories that match.
         </p>
       )}

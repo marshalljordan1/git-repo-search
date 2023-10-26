@@ -6,19 +6,19 @@ const Avatar: React.FC = () => {
   const user = useSelector((state: RootState) => state.github.user);
 
   return (
-    <div>
+    <>
       {user ? (
         <img
           src={user.avatar_url}
           width="260"
           height="260"
-          className="avatar avatar-user w-screen light-gray-border z-10 h-auto"
+          className="avatar avatar-user w-28 sm:w-full light-gray-border h-auto"
           alt="User Avatar"
         />
       ) : (
         <div>Loading...</div>
       )}
-    </div>
+    </>
   );
 };
 

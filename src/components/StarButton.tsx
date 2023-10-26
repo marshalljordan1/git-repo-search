@@ -3,8 +3,10 @@ const StarButton = () => {
   return (
     <>
       <button className="btn btn-sm flex bg-gray-btn normal-case light-gray-border shadow">
-        <StarIcon />
-        Star
+        <div className="flex gap-1">
+          <StarIcon />
+          Star
+        </div>
       </button>
     </>
   );

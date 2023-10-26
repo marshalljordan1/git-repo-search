@@ -7,15 +7,9 @@ const UserInfo: React.FC = () => {
   const user = useSelector((state: RootState) => state.github.user);
 
   return (
-    <div className="container flex flex-col">
-      <p className="font-bold text-2xl">{user?.name}</p>
-      <div className="flex">
-        <p className="font-normal text-xl text-light-gray font-light">
-          {user?.login}
-        </p>
-      </div>
-      <div className="flex flex-col gap-2">
-        <p className="text-xl mt-5">{user?.bio}</p>
+    <div className="flex flex-col w-full md:w-64 lg:w-72 xl:w-96">
+      <div className="flex flex-col gap-4">
+        <p className="text-base sm:text-xl">{user?.bio}</p>
         <FollowButton />
         <div className="flex gap-3">
           <a href="">{user?.followers} followers</a>

@@ -20,16 +20,20 @@ const SearchBar: React.FC = () => {
   }, [searchQuery, dispatch]);
 
   return (
-    <div className="flex light-gray-b-border  pb-6 gap-5">
-      <input
-        type="text"
-        placeholder="Find a repository..."
-        className="input input-sm w-3/6 p-5 md:text-lg"
-        value={searchQuery}
-        onChange={handleSearchInputChange}
-      />
-      <FilterButtons />
-      <NewRepoButton />
+    <div className="flex sm:flex-row flex-col py-5 justify-between gap-4 sm:gap-2 w-full sm:w-auto">
+      <div className="flex sm:flex-row flex-col sm:max-xl:flex-col w-full gap-3 sm:gap-0 sm:w-full order-2 sm:order-1">
+        <input
+          type="text"
+          placeholder="Find a repository..."
+          className="input flex-1 input-sm py-2 md:py-2 lg:py-2 xl:py-5 md:text-lg w-full"
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+        />
+        <FilterButtons />
+      </div>
+      <div className="flex flex-row order-1 sm:order-2 ">
+        <NewRepoButton />
+      </div>
     </div>
   );
 };
