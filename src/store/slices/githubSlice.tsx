@@ -1,18 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { GitHubRepository, GitHubUser } from "../../interfaces/interfaces"; // Import your interfaces
+import { GithubState } from "../../interfaces/interfaces";
 
-const initialState = {
-  repositories: [] as GitHubRepository[],
-  user: null as GitHubUser | null, // Store user info
+const initialState: GithubState = {
+  repositories: [],
+  user: null,
   status: "idle",
-  error: null as string | null,
+  error: null,
+  searchTerm: "",
+  filteredRepositories: [],
+  searchResultsCount: 0,
+  isSearchQueryEmpty: true,
 };
 
-export const fetchGitHubData = createAsyncThunk(
+export const fetchGithubData = createAsyncThunk(
   "github/fetchData",
   async (username: string) => {
-    // Fetch both the repositories and user info in a single API call
     const [reposResponse, userResponse] = await Promise.all([
       axios.get(`https://api.github.com/users/${username}/repos`),
       axios.get(`https://api.github.com/users/${username}`),
@@ -21,8 +24,6 @@ export const fetchGitHubData = createAsyncThunk(
     const repositories = reposResponse.data;
     const user = userResponse.data;
 
-    console.log(user);
-
     return { repositories, user };
   }
 );
@@ -30,22 +31,41 @@ export const fetchGitHubData = createAsyncThunk(
 const githubSlice = createSlice({
   name: "github",
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+      state.isSearchQueryEmpty = !action.payload;
+    },
+    filterRepositories: (state) => {
+      if (!state.searchTerm) {
+        state.isSearchQueryEmpty = !state.searchTerm;
+        state.filteredRepositories = state.repositories;
+        state.searchResultsCount = 0;
+      } else {
+        state.filteredRepositories = state.repositories.filter((repository) =>
+          repository.name.toLowerCase().includes(state.searchTerm.toLowerCase())
+        );
+        state.searchResultsCount = state.filteredRepositories.length;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchGitHubData.pending, (state) => {
+      .addCase(fetchGithubData.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchGitHubData.fulfilled, (state, action) => {
+      .addCase(fetchGithubData.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.repositories = action.payload.repositories;
         state.user = action.payload.user;
       })
-      .addCase(fetchGitHubData.rejected, (state, action) => {
+      .addCase(fetchGithubData.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message ?? "An error occurred";
       });
   },
 });
+
+export const { setSearchTerm, filterRepositories } = githubSlice.actions;
 
 export default githubSlice.reducer;
