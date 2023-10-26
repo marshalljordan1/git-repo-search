@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
               <img src={githubLogo} width="40" alt="" />
             </div>
             <button className="text-sm md:text-lg font-bold ms-3">
-              {user ? user.login : "Username"}
+              {user?.login}
             </button>
           </div>
           <div>
