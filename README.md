@@ -2,7 +2,7 @@
 
 This Coding Challenge for MVST allows you to search and filter GitHub repositories by name. It's a simple and responsive web application built using React and TypeScript, fetching data from the official GitHub API.
 
-[Live Demo](git-repo-search-kohl.vercel.app)
+[Live Demo](https://git-repo-search-kohl.vercel.app/)
 
 ## Requirements
 
