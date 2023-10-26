@@ -9,6 +9,8 @@ const initialState: GithubState = {
   error: null,
   searchTerm: "",
   filteredRepositories: [],
+  searchResultsCount: 0,
+  isSearchQueryEmpty: true,
 };
 
 export const fetchGithubData = createAsyncThunk(
@@ -32,14 +34,18 @@ const githubSlice = createSlice({
   reducers: {
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
+      state.isSearchQueryEmpty = !action.payload;
     },
     filterRepositories: (state) => {
       if (!state.searchTerm) {
+        state.isSearchQueryEmpty = !state.searchTerm;
         state.filteredRepositories = state.repositories;
+        state.searchResultsCount = 0;
       } else {
         state.filteredRepositories = state.repositories.filter((repository) =>
           repository.name.toLowerCase().includes(state.searchTerm.toLowerCase())
         );
+        state.searchResultsCount = state.filteredRepositories.length;
       }
     },
   },

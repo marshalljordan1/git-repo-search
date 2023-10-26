@@ -24,4 +24,6 @@ export interface GithubState {
   error: string | null;
   searchTerm: string;
   filteredRepositories: GithubRepository[];
+  searchResultsCount: number;
+  isSearchQueryEmpty: boolean;
 }
