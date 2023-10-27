@@ -5,11 +5,17 @@ import StarButton from "./StarButton";
 import { fetchGithubData } from "../store/slices/githubSlice";
 import { useDateFormat } from "../context/DateFormatContext";
 
+/**
+ * Repositories component displays a list of GitHub repositories.
+ */
 const Repositories: React.FC = () => {
+  // Use the `useDateFormat` function from the context to format dates.
   const { formatDateAgo } = useDateFormat();
 
+  // Initialize the useDispatch function to dispatch actions.
   const dispatch: AppDispatch = useDispatch();
 
+  // Access data from the Redux store using useSelector.
   const filteredRepositories = useSelector(
     (state: RootState) => state.github.filteredRepositories
   );
@@ -25,16 +31,19 @@ const Repositories: React.FC = () => {
   const user = useSelector((state: RootState) => state.github.user);
   const searchTerm = useSelector((state: RootState) => state.github.searchTerm);
 
+  // Fetch GitHub data on component first load or updates.
   useEffect(() => {
     dispatch(fetchGithubData("marshalljordan1"));
   }, [dispatch]);
 
+  // Determine which set of repositories to render.
   const repositoriesToRender =
     filteredRepositories.length > 0 ? filteredRepositories : repositories;
 
   return (
     <>
       <div className="light-gray-b-border">
+        {/* Display search result information if the search query is not empty. */}
         {!isSearchQueryEmpty ? (
           <p className="my-5">
             {searchResultsCount >= 0 ? (
@@ -51,6 +60,7 @@ const Repositories: React.FC = () => {
         ) : null}
       </div>
 
+      {/* Display repositories or a message if no repositories match the query. */}
       {searchResultsCount > 0 || isSearchQueryEmpty ? (
         <div>
           <ul className="flex flex-col mb-10">
@@ -85,6 +95,7 @@ const Repositories: React.FC = () => {
         </div>
       ) : (
         <p className="text-3xl font-bold text-center mt-20 mb-40 sm:mb-0 sm:mt-40">
+          {/* Display a message when no repositories match. */}
           {user?.login} doesn’t have any repositories that match.
         </p>
       )}

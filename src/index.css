@@ -1,3 +1,4 @@
+/* Base styles, component-specific styles and utility classes provided by Tailwind CSS. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,8 +8,9 @@ body {
   padding: 0;
 }
 
-.avatar {
-  border-radius: 50%;
+.avatar-border {
+  border-radius: 50%; /* Rounded border for avatars. */
+  border: solid 2px #cfd7de;
 }
 
 .light-gray-border {

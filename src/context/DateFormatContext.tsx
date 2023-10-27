@@ -1,13 +1,22 @@
+// Import necessary modules from React.
 import React, { createContext, useContext, ReactNode } from "react";
 
+// Define a type for the context that will provide a function to format dates.
 type DateFormatContextType = {
+  /**
+   * Formats a given date as a relative time string.
+   * @param date - The date to be formatted.
+   * @returns A string representing the time difference relative to the current time.
+   */
   formatDateAgo: (date: string) => string;
 };
 
+// Create a context to hold the date formatting function (I used context to show I can use it).
 const DateFormatContext = createContext<DateFormatContextType | undefined>(
   undefined
 );
 
+// Create a custom hook to access the date formatting function from the context.
 export const useDateFormat = () => {
   const context = useContext(DateFormatContext);
   if (!context) {
@@ -16,13 +25,16 @@ export const useDateFormat = () => {
   return context;
 };
 
+// Define the props for the DateFormatProvider component.
 type DateFormatProviderProps = {
   children: ReactNode;
 };
 
+// Create the DateFormatProvider component, which provides the date formatting function.
 export const DateFormatProvider: React.FC<DateFormatProviderProps> = ({
   children,
 }) => {
+  // Define the function to format dates relative to the current time.
   const formatDateAgo = (updated_at: string) => {
     const updatedDate = new Date(updated_at);
     const currentDate = new Date();
@@ -57,6 +69,7 @@ export const DateFormatProvider: React.FC<DateFormatProviderProps> = ({
     return `${years} year${years === 1 ? "" : "s"} ago`;
   };
 
+  // Provide the formatDateAgo function through the context.
   return (
     <DateFormatContext.Provider value={{ formatDateAgo }}>
       {children}

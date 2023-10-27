@@ -1,0 +1,5 @@
+{
+    "entryPoints": ["src"], // The source code directory
+    "entryPointStrategy": "expand",
+    "out": "docs" // The output directory for generated documentation
+  }

@@ -1,8 +1,12 @@
+// Import necessary components for the SearchPage.
 import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/SearchBar";
 import Repositories from "../components/Repositories";
 import Navbar from "../components/Navbar";
 
+/**
+ * Represents the SearchPage component.
+ */
 const SearchPage = () => {
   return (
     <div className="flex flex-col">
