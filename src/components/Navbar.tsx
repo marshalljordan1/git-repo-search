@@ -6,9 +6,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import SearchUser from "./SearchUser";
 
-/**
- * Navbar component displays the navigation bar with a GitHub logo and user information.
- */
 const Navbar: React.FC = () => {
   // Use the useSelector hook to access the user data from the Redux store.
   const user = useSelector((state: RootState) => state.github.userInfo);

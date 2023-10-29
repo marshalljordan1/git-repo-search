@@ -4,9 +4,6 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState, ChangeEvent } from "react";
 import { setSearchTerm, filterRepositories } from "../store/slices/githubSlice";
 
-/**
- * SearchBar component provides search functionality for repositories.
- */
 const SearchBar: React.FC = () => {
   // Initialize the search query state and Redux dispatch function.
   const [searchQuery, setSearchQuery] = useState<string>("");

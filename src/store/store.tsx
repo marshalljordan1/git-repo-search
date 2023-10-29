@@ -1,15 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import githubReducer from "./slices/githubSlice";
 
-/**
- * Create a Redux store using the configureStore function.
- *
- * @remarks
- * This store configuration includes the `githubReducer` in the store's reducers.
- *
- * @param {Object} reducer - Reducers for the store.
- * @returns {Store} The configured Redux store.
- */
 const store = configureStore({
   reducer: {
     github: githubReducer, // Include your githubReducer in the store's reducers.

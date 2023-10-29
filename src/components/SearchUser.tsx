@@ -2,9 +2,6 @@ import { useDispatch } from "react-redux";
 import { useState, FormEvent } from "react";
 import { setSearchedUser, fetchGithubData } from "../store/slices/githubSlice";
 
-/**
- * SearchUser component provides search functionality for users.
- */
 const SearchUser: React.FC = () => {
   // Initialize the search query state and Redux dispatch function.
   const [searchUser, setSearchUser] = useState<string>("");

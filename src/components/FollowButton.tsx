@@ -1,6 +1,3 @@
-/**
- * FollowButton component displays a follow button with varying text sizes based on screen size.
- */
 const FollowButton = () => {
   return (
     <>

@@ -2,9 +2,6 @@ import Avatar from "./Avatar";
 import UserInfo from "./UserInfo";
 import Username from "./Username";
 
-/**
- * Sidebar component displays user information and components related to the user.
- */
 const Sidebar = () => {
   return (
     <>

@@ -2,9 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 
-/**
- * Username component displays the user's full name and username.
- */
 const Username: React.FC = () => {
   const user = useSelector((state: RootState) => state.github.userInfo);
 

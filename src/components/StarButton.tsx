@@ -1,8 +1,5 @@
 import { StarIcon } from "@primer/octicons-react";
 
-/**
- * StarButton component represents a button for starring a repository.
- */
 const StarButton = () => {
   return (
     <>

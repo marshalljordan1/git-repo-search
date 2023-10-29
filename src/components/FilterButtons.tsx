@@ -1,8 +1,5 @@
 import { TriangleDownIcon } from "@primer/octicons-react";
 
-/**
- * FilterButtons component provides filter options for sorting.
- */
 const FilterButtons = () => {
   return (
     <div className="flex mt-2 md:mt-2 lg:mt-2 xl:mt-0">

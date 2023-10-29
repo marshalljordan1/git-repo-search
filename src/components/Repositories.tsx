@@ -5,9 +5,6 @@ import StarButton from "./StarButton";
 import { fetchGithubData } from "../store/slices/githubSlice";
 import { useDateFormat } from "../context/DateFormatContext";
 
-/**
- * Repositories component displays a list of GitHub repositories.
- */
 const Repositories: React.FC = () => {
   // Use the `useDateFormat` function from the context to format dates.
   const { formatDateAgo } = useDateFormat();

@@ -1,13 +1,7 @@
-// Import necessary modules from React.
 import React, { createContext, useContext, ReactNode } from "react";
 
 // Define a type for the context that will provide a function to format dates.
 type DateFormatContextType = {
-  /**
-   * Formats a given date as a relative time string.
-   * @param date - The date to be formatted.
-   * @returns A string representing the time difference relative to the current time.
-   */
   formatDateAgo: (date: string) => string;
 };
 

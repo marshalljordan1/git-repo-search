@@ -1,6 +1,3 @@
-/**
- * Represents a GitHub repository.
- */
 export interface GithubRepository {
   id: number; // Unique identifier for the repository.
   name: string; // Name of the repository.
@@ -10,9 +7,6 @@ export interface GithubRepository {
   language: string; // Programming language used in the repository.
 }
 
-/**
- * Represents a GitHub user.
- */
 export interface GithubUser {
   name: string; // Full name of the GitHub user.
   login: string; // GitHub username.
@@ -24,9 +18,6 @@ export interface GithubUser {
   public_repos: number; // Number of public repositories owned by the user.
 }
 
-/**
- * Represents the overall state of GitHub-related data.
- */
 export interface GithubState {
   repositories: GithubRepository[]; // List of GitHub repositories.
   userInfo: GithubUser | null; // GitHub user information or null if not available.

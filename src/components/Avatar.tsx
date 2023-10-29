@@ -1,15 +1,7 @@
-/**
- * Avatar component displays a user's avatar image.
- */
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 
-/**
- * Functional component to display a user's avatar image.
- *
- * @component
- */
 const Avatar: React.FC = () => {
   // Use the useSelector hook to access the user data from the Redux store.
   const user = useSelector((state: RootState) => state.github.userInfo);

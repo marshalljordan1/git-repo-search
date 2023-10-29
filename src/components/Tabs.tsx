@@ -11,9 +11,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import { fetchGithubData } from "../store/slices/githubSlice";
 
-/**
- * Tabs component represents navigation tabs for user profile information.
- */
 const Tabs: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const user = useSelector((state: RootState) => state.github.userInfo);

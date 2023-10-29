@@ -3,9 +3,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import FollowButton from "./FollowButton";
 
-/**
- * UserInfo component displays user information, including bio and follow statistics.
- */
 const UserInfo: React.FC = () => {
   const user = useSelector((state: RootState) => state.github.userInfo);
 
