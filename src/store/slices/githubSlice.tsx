@@ -14,23 +14,13 @@ const initialState: GithubState = {
   isSearchQueryEmpty: true,
 };
 
-// const accessToken = "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";
-
 export const fetchGithubData = createAsyncThunk(
   "github/fetchData", // A unique string identifier for the action
   async (username: string) => {
     // Use async/await to fetch data from the GitHub API
     const [reposResponse, userResponse] = await Promise.all([
-      axios.get(`https://api.github.com/users/${username}/repos`, {
-        // headers: {
-        //   Authorization: `token ${accessToken}`,
-        // },
-      }), // Fetch user's repositories with the access token
-      axios.get(`https://api.github.com/users/${username}`, {
-        // headers: {
-        //   Authorization: `token ${accessToken}`,
-        // },
-      }), // Fetch user's information with the access token
+      axios.get(`https://api.github.com/users/${username}/repos`, {}), // Fetch user's repositories with the access token
+      axios.get(`https://api.github.com/users/${username}`, {}), // Fetch user's information with the access token
     ]);
 
     const repositories = reposResponse.data; // Extract repositories data
