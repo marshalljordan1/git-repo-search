@@ -8,7 +8,7 @@ This Coding Challenge for MVST allows you to search and filter GitHub repositori
 
 - **React**: The application is written using React, a popular JavaScript library for building user interfaces.
 - **TypeScript**: TypeScript is used for type checking and providing static types to your JavaScript code.
-- **Responsive design**: This application uses Tailwind.css to ensure a responsive design for mobile, tablet and desktop. 
+- **Tailwind.css**: This application uses Tailwind.css to ensure a responsive design for mobile, tablet and desktop. 
 - **Git**: Version control is managed with Git, making it easier to collaborate and track changes.
 - **Browser Compatibility**: The application is tested and optimized for Google Chrome.
 
