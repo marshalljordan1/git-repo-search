@@ -6,7 +6,7 @@ import { RootState } from "../store/store";
  * Username component displays the user's full name and username.
  */
 const Username: React.FC = () => {
-  const user = useSelector((state: RootState) => state.github.user);
+  const user = useSelector((state: RootState) => state.github.userInfo);
 
   return (
     <div className="flex flex-col ms-5 sm:ms-0">

@@ -21,7 +21,8 @@ import { GithubState } from "../../interfaces/interfaces";
  */
 const initialState: GithubState = {
   repositories: [],
-  user: null,
+  userInfo: null,
+  searchedUser: "marshalljordan1",
   status: "idle",
   error: null,
   searchTerm: "",
@@ -29,6 +30,8 @@ const initialState: GithubState = {
   searchResultsCount: 0,
   isSearchQueryEmpty: true,
 };
+
+const accessToken = "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";
 
 /**
  * An asynchronous thunk to fetch data from the GitHub API.
@@ -43,14 +46,25 @@ const initialState: GithubState = {
 export const fetchGithubData = createAsyncThunk(
   "github/fetchData", // A unique string identifier for the action
   async (username: string) => {
+    const headers = {
+      Authorization: `token ${accessToken}`, // Replace with your actual access token
+    };
+
+    // Configure Axios request with custom headers
+    const axiosConfig = {
+      headers,
+    };
+
     // Use async/await to fetch data from the GitHub API
     const [reposResponse, userResponse] = await Promise.all([
-      axios.get(`https://api.github.com/users/${username}/repos`), // Fetch user's repositories
-      axios.get(`https://api.github.com/users/${username}`), // Fetch user's information
+      axios.get(`https://api.github.com/users/${username}/repos`, axiosConfig), // Fetch user's repositories
+      axios.get(`https://api.github.com/users/${username}`, axiosConfig), // Fetch user's information
     ]);
 
     const repositories = reposResponse.data; // Extract repositories data
     const user = userResponse.data; // Extract user data
+    console.log(repositories);
+    console.log(user);
 
     // Return an object containing both repositories and user data
     return { repositories, user };
@@ -80,6 +94,9 @@ const githubSlice = createSlice({
       state.searchTerm = action.payload;
       state.isSearchQueryEmpty = !action.payload;
     },
+    setSearchedUser: (state, action) => {
+      state.searchedUser = action.payload;
+    },
     /**
      * Filter repositories based on the search term and update search results count.
      *
@@ -107,7 +124,7 @@ const githubSlice = createSlice({
       .addCase(fetchGithubData.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.repositories = action.payload.repositories;
-        state.user = action.payload.user;
+        state.userInfo = action.payload.user;
       })
       .addCase(fetchGithubData.rejected, (state, action) => {
         state.status = "failed";
@@ -121,6 +138,7 @@ const githubSlice = createSlice({
  *
  * @typedef {Reducer<GithubState>} GithubReducer
  */
-export const { setSearchTerm, filterRepositories } = githubSlice.actions;
+export const { setSearchTerm, filterRepositories, setSearchedUser } =
+  githubSlice.actions;
 
 export default githubSlice.reducer;

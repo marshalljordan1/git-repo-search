@@ -12,7 +12,7 @@ import { RootState } from "../store/store";
  */
 const Avatar: React.FC = () => {
   // Use the useSelector hook to access the user data from the Redux store.
-  const user = useSelector((state: RootState) => state.github.user);
+  const user = useSelector((state: RootState) => state.github.userInfo);
 
   return (
     <>

@@ -16,6 +16,7 @@ export interface GithubRepository {
 export interface GithubUser {
   name: string; // Full name of the GitHub user.
   login: string; // GitHub username.
+  searchedUser: string;
   avatar_url: string; // URL of the user's avatar (profile picture).
   bio: string; // User's bio or profile description.
   followers: number; // Number of followers the user has.
@@ -28,7 +29,8 @@ export interface GithubUser {
  */
 export interface GithubState {
   repositories: GithubRepository[]; // List of GitHub repositories.
-  user: GithubUser | null; // GitHub user information or null if not available.
+  userInfo: GithubUser | null; // GitHub user information or null if not available.
+  searchedUser: string;
   status: "idle" | "loading" | "succeeded" | "failed"; // Status of data fetching.
   error: string | null; // Error message if data fetching fails.
   searchTerm: string; // Search term used to filter repositories.

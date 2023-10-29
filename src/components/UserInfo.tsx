@@ -7,7 +7,7 @@ import FollowButton from "./FollowButton";
  * UserInfo component displays user information, including bio and follow statistics.
  */
 const UserInfo: React.FC = () => {
-  const user = useSelector((state: RootState) => state.github.user);
+  const user = useSelector((state: RootState) => state.github.userInfo);
 
   return (
     <div className="flex flex-col w-full md:w-64 lg:w-72 xl:w-96">

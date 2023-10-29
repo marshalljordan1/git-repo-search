@@ -16,25 +16,20 @@ const Repositories: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   // Access data from the Redux store using useSelector.
-  const filteredRepositories = useSelector(
-    (state: RootState) => state.github.filteredRepositories
-  );
-  const repositories = useSelector(
-    (state: RootState) => state.github.repositories
-  );
-  const isSearchQueryEmpty = useSelector(
-    (state: RootState) => state.github.isSearchQueryEmpty
-  );
-  const searchResultsCount = useSelector(
-    (state: RootState) => state.github.searchResultsCount
-  );
-  const user = useSelector((state: RootState) => state.github.user);
-  const searchTerm = useSelector((state: RootState) => state.github.searchTerm);
+  const {
+    filteredRepositories,
+    repositories,
+    isSearchQueryEmpty,
+    searchResultsCount,
+    userInfo,
+    searchTerm,
+    searchedUser,
+  } = useSelector((state: RootState) => state.github);
 
   // Fetch GitHub data on component first load or updates.
   useEffect(() => {
-    dispatch(fetchGithubData("marshalljordan1"));
-  }, [dispatch]);
+    dispatch(fetchGithubData(searchedUser));
+  }, [searchedUser, dispatch]);
 
   // Determine which set of repositories to render.
   const repositoriesToRender =
@@ -96,7 +91,7 @@ const Repositories: React.FC = () => {
       ) : (
         <p className="text-3xl font-bold text-center mt-20 mb-40 sm:mb-0 sm:mt-40">
           {/* Display a message when no repositories match. */}
-          {user?.login} doesn’t have any repositories that match.
+          {userInfo?.login} doesn’t have any repositories that match.
         </p>
       )}
     </>

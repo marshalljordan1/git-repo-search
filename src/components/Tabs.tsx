@@ -16,7 +16,7 @@ import { fetchGithubData } from "../store/slices/githubSlice";
  */
 const Tabs: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.github.user);
+  const user = useSelector((state: RootState) => state.github.userInfo);
 
   // Use useEffect to fetch GitHub data for the user.
   useEffect(() => {

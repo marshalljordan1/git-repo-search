@@ -6,7 +6,8 @@ import { GithubRepository } from "../../interfaces/interfaces";
  */
 const initialState: GithubState = {
   repositories: [],
-  user: null,
+  userInfo: null,
+  searchedUser: "",
   status: "idle",
   error: null,
   searchTerm: "",
