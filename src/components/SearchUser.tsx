@@ -21,8 +21,8 @@ const SearchUser: React.FC = () => {
   };
 
   return (
-    <div className="">
-      <div className="">
+    <div>
+      <div>
         {/* Search input for finding repositories. */}
         <form className="flex" onSubmit={handleFormSubmit}>
           <input

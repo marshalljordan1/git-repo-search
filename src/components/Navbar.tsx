@@ -8,6 +8,7 @@ import SearchUser from "./SearchUser";
 
 const Navbar: React.FC = () => {
   // Use the useSelector hook to access the user data from the Redux store.
+  const { status } = useSelector((state: RootState) => state.github);
   const user = useSelector((state: RootState) => state.github.userInfo);
 
   return (
@@ -23,11 +24,15 @@ const Navbar: React.FC = () => {
             <img src={githubLogo} width="40" alt="" />
           </div>
           {/* User's GitHub login or username. */}
-          <div className="ms-3 mt-4">
-            <button className="text-sm md:text-lg font-bold">
-              {user?.login}
-            </button>
-          </div>
+          {status === "failed" ? (
+            <div className="text-red-500 font-bold ms-3 mt-4">No user</div>
+          ) : (
+            <div className="ms-3 mt-4">
+              <button className="text-sm md:text-lg font-bold">
+                {user?.login}
+              </button>
+            </div>
+          )}
         </div>
         <div className="mt-6 sm:ms-16 px-4">
           {/* Search new username. */}

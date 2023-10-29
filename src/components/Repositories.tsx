@@ -21,6 +21,7 @@ const Repositories: React.FC = () => {
     userInfo,
     searchTerm,
     searchedUser,
+    status,
   } = useSelector((state: RootState) => state.github);
 
   // Fetch GitHub data on component first load or updates.
@@ -42,9 +43,8 @@ const Repositories: React.FC = () => {
               <div className="flex justify-between">
                 <div className="text-lg ">
                   <span className="font-bold">{searchResultsCount}</span>
-                  {` results for repositories matching`}{" "}
-                  <span className="font-bold">{searchTerm}</span> {`sorted by`}{" "}
-                  <span className="font-bold">last updated.</span>
+                  {` results for repositories matching `}
+                  <span className="font-bold">{searchTerm}</span>
                 </div>
               </div>
             ) : null}
@@ -52,44 +52,51 @@ const Repositories: React.FC = () => {
         ) : null}
       </div>
 
-      {/* Display repositories or a message if no repositories match the query. */}
-      {searchResultsCount > 0 || isSearchQueryEmpty ? (
-        <div>
-          <ul className="flex flex-col mb-10">
-            {repositoriesToRender.map((repository) => (
-              <li className="py-6 light-gray-b-border " key={repository.id}>
-                <div className="flex">
-                  <div className="flex flex-col gap-2 w-10/12">
-                    <a
-                      href={repository.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-link text-2xl font-bold"
-                    >
-                      {repository.name}
-                    </a>
-                    <p className="text-light-gray">{repository.description}</p>
+      {status === "failed" ? null : (
+        <>
+          {repositoriesToRender.length > 0 ? (
+            <div>
+              <ul className="flex flex-col mb-10">
+                {repositoriesToRender.map((repository) => (
+                  <li className="py-6 light-gray-b-border " key={repository.id}>
+                    <div className="flex">
+                      <div className="flex flex-col gap-2 w-10/12">
+                        <a
+                          href={repository.html_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-link text-2xl font-bold"
+                        >
+                          {repository.name}
+                        </a>
+                        <p className="text-light-gray">
+                          {repository.description}
+                        </p>
 
-                    <div className="flex gap-4">
-                      <p className="text-light-gray">{repository.language}</p>
-                      <p className="text-light-gray">
-                        Updated {formatDateAgo(repository.updated_at)}
-                      </p>
+                        <div className="flex gap-4">
+                          <p className="text-light-gray">
+                            {repository.language}
+                          </p>
+                          <p className="text-light-gray">
+                            Updated {formatDateAgo(repository.updated_at)}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="sm:mt-5 mt-14 me-2">
+                        <StarButton />
+                      </div>
                     </div>
-                  </div>
-                  <div className="sm:mt-5 mt-14 me-2">
-                    <StarButton />
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p className="text-3xl font-bold text-center mt-20 mb-40 sm:mb-0 sm:mt-40">
-          {/* Display a message when no repositories match. */}
-          {userInfo?.login} doesn’t have any repositories that match.
-        </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <p className="text-3xl font-bold text-center mt-20 mb-40 sm:mb-0 sm:mt-40">
+              {/* Display a message when no repositories match. */}
+              {userInfo?.login} doesn’t have any repositories that match.
+            </p>
+          )}
+        </>
       )}
     </>
   );

@@ -14,15 +14,23 @@ const initialState: GithubState = {
   isSearchQueryEmpty: true,
 };
 
+// const accessToken = "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";
+
 export const fetchGithubData = createAsyncThunk(
   "github/fetchData", // A unique string identifier for the action
   async (username: string) => {
-    console.log(username);
-
     // Use async/await to fetch data from the GitHub API
     const [reposResponse, userResponse] = await Promise.all([
-      axios.get(`https://api.github.com/users/${username}/repos`), // Fetch user's repositories
-      axios.get(`https://api.github.com/users/${username}`), // Fetch user's information
+      axios.get(`https://api.github.com/users/${username}/repos`, {
+        // headers: {
+        //   Authorization: `token ${accessToken}`,
+        // },
+      }), // Fetch user's repositories with the access token
+      axios.get(`https://api.github.com/users/${username}`, {
+        // headers: {
+        //   Authorization: `token ${accessToken}`,
+        // },
+      }), // Fetch user's information with the access token
     ]);
 
     const repositories = reposResponse.data; // Extract repositories data
@@ -33,25 +41,10 @@ export const fetchGithubData = createAsyncThunk(
   }
 );
 
-/**
- * A slice of the Redux store for the Github data.
- *
- * @remarks
- * This slice includes reducers for setting the search term and filtering repositories.
- * It also handles the pending, fulfilled, and rejected states of the async thunk.
- *
- * @typedef {Slice} GithubSlice
- */
 const githubSlice = createSlice({
   name: "github",
   initialState,
   reducers: {
-    /**
-     * Set the search term and update the flag indicating if the search query is empty.
-     *
-     * @param {GithubState} state - The current state.
-     * @param {PayloadAction<string>} action - The action with the payload containing the search term.
-     */
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
       state.isSearchQueryEmpty = !action.payload;
@@ -59,11 +52,6 @@ const githubSlice = createSlice({
     setSearchedUser: (state, action) => {
       state.searchedUser = action.payload;
     },
-    /**
-     * Filter repositories based on the search term and update search results count.
-     *
-     * @param {GithubState} state - The current state.
-     */
     filterRepositories: (state) => {
       if (!state.searchTerm) {
         state.isSearchQueryEmpty = !state.searchTerm;
@@ -82,6 +70,7 @@ const githubSlice = createSlice({
     builder
       .addCase(fetchGithubData.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(fetchGithubData.fulfilled, (state, action) => {
         state.status = "succeeded";
